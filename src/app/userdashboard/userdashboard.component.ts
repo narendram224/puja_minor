@@ -22,7 +22,7 @@ export class UserdashboardComponent implements OnInit {
     update=false;
     add  =false;
 
-  constructor(private userdashboardService:UserdashboardService,private login:LoginService) { }
+  constructor(private userdashboardService:UserdashboardService,public login:LoginService) { }
 
   ngOnInit() {
     this.userdashboardService.getYourIdea().subscribe((yourIdea)=>{

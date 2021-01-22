@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   AllIdeas:any[]=[];
-  constructor(private homeService:HomeService,private login:LoginService,private router:Router) { }
+  constructor(private homeService:HomeService,public login:LoginService,private router:Router) { }
 
   ngOnInit() {
       this.homeService.getAllIde().subscribe((ideas)=>{

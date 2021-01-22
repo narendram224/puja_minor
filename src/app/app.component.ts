@@ -10,7 +10,7 @@ export class AppComponent {
   menuIcon:any='assets/images/menuIcon.svg';
   year = new Date().getFullYear();
 
-  constructor(private login:LoginService){
+  constructor(public login:LoginService){
     
   }
 }
