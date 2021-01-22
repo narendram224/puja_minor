@@ -14,6 +14,7 @@ import {FormsModule}from "@angular/forms";
 import { RegisterService } from './service/register/register.service';
 import { LoginService } from './service/login/login.service';
 import { UserdashboardService } from './service/userDashbaord/userdashboard.service';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { UserdashboardService } from './service/userDashbaord/userdashboard.serv
     RegisterComponent,
     LoginComponent,
     UserdashboardComponent,
-    HomeComponent
+    HomeComponent,AboutComponent
   ],
   imports: [
     BrowserModule,

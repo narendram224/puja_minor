@@ -27,7 +27,7 @@ export class UserdashboardComponent implements OnInit {
   ngOnInit() {
     this.userdashboardService.getYourIdea().subscribe((yourIdea)=>{
         this.yourIdeas = yourIdea;
-        console.log(yourIdea);
+        // console.log(yourIdea);
         
     });
     this.userdashboardService.getCategory().subscribe((category:any[])=>{
@@ -38,7 +38,13 @@ export class UserdashboardComponent implements OnInit {
   
   }
   createIdea(){
-    this.add = true?true:false;
+    this.add = !this.add;
+    this.update=false;
+    this.addIdea.title="";
+    this.addIdea.subject = "";
+    this.addIdea.description = "";
+    this.addIdea.categoryId = "";
+
   }
 
   saveUser(ideaData:NgForm){
@@ -46,13 +52,19 @@ export class UserdashboardComponent implements OnInit {
     console.log(ideaData.value);
     this.userdashboardService.AddNewIdea(ideaData.value).subscribe((res)=>{
          console.log(res);
+         ideaData.reset();
+         this.add = false;
+         this.update= false;
          this.yourIdeas.push(res);
     },(err)=>{
         alert(err.error);
     })       
 }
 editIdea(idea:any){
+  console.log("te event Data is");
+  
   this.update = true;
+  this.add=false;
     console.log(idea);
        this.addIdea.title=idea.title;
        this.addIdea.subject = idea.subject;
@@ -66,16 +78,29 @@ EditIdea(forData){
   console.log(this.addIdea.id);
   
  this.userdashboardService.updateIdea(this.addIdea.id,forData.value).subscribe((res)=>{
-    console.log(res);
+    console.log("the response Data is",res);
+   const indexData = this.yourIdeas.findIndex(x => x._id ===this.addIdea.id);
+    this.yourIdeas[indexData] = res;
+    // console.log("The youur Data us",this.yourIdeas);
+    this.userdashboardService.getYourIdea().subscribe((yourIdea)=>{
+      this.yourIdeas = yourIdea;
+      
+  });
+    
     forData.reset();
  }) 
 }
 deleteIdea(data){
-  console.log(data);
-  this.userdashboardService.delteIdea(data._id).subscribe((res)=>{
-      console.log(res);
+  if (confirm("Are you sure want to delete your Idea?")) {
+    this.userdashboardService.delteIdea(data._id).subscribe((res)=>{
+
+      this.userdashboardService.getYourIdea().subscribe((yourIdea)=>{
+        this.yourIdeas = yourIdea;
+    });
       
   })
+  } 
+  
   
 }
 }

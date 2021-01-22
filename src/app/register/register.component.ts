@@ -15,18 +15,27 @@ export class RegisterComponent implements OnInit {
         password:'',
         phone:null
     }
+    login:boolean = false;
+    errormsg:string ='';
   constructor(private register:RegisterService) { }
 
   ngOnInit() {
   }
+  handleLoginALert(){
+    this.login=false;
+    this.errormsg="";
+  }
 
   saveUser(formData:NgForm){
-      console.log(formData.value);
-        this.register.registers(formData.value).subscribe((res)=>{
-          alert(res.message+" "+"please login For continue");
-          
+  
+       
+      this.register.registers(formData.value).subscribe((res)=>{
+          this.login = true;
+          // alert(res.message+" "+"please login For continue");
+          formData.reset();
         },(err)=>{
-          alert(err.error.message);
+          this.login = true;
+          this.errormsg="Something went wrong Please contact our team"
         })
        
   }

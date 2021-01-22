@@ -3,13 +3,13 @@ import {HttpClient,HttpHeaders,HttpResponse, HttpErrorResponse} from '@angular/c
 import { map,catchError} from 'rxjs/operators';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { LoginService } from '../login/login.service';
-
+import { environment } from '../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  url = "http://localhost:3000/api";
+  url = environment.apiUrl||"https://localhost";
   header: HttpHeaders;
   constructor(private http: HttpClient) { }
    headers_object = new HttpHeaders().set("Authorization", localStorage.getItem("token"));

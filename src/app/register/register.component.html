@@ -1,12 +1,31 @@
 <!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
 
 <body>
-    <div class="container">
+  <div style="background: url(https://i.postimg.cc/ZnHTP71s/aircraft-airplane-boat-1575833.jpg)" class="page-holder bg-cover">
+
+    <div class="container  pt-2 pb-1">
+      <header class="text-center text-white pt-5 pb-1">
+        <h1 class="display-4 font-weight-bold mb-4">Welcome to Entrepreneurship club</h1>
+        <p class="lead mb-0">Register your self to join our large community</p>
+      </header>
+    <div class="container text-white">
+      <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="login&&errormsg!==''">
+        <strong>Server not running.</strong> {{errormsg}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="handleLoginALert()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="alert alert-info alert-dismissible fade show" role="alert" *ngIf="login&&errormsg==''">
+        <strong>Welcome to user  &#9787;</strong> Please login with registered email and password.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="handleLoginALert()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
           <div class="card card-signin my-5">
             <div class="card-body">
-              <h5 class="card-title text-center">Sign In</h5>
+              <h5 class="card-title text-center text-muted">Sign In</h5>
               <form class="form-signin" #userFrom = "ngForm" (ngSubmit)=" saveUser(userFrom)">
                  <div class="form-label-group">
                   <input type="text"  required name="name" required [(ngModel)]="user.name"  class="form-control " [class.is-invalid]="fullNameControl.invalid && fullNameControl.touched" 
@@ -50,5 +69,7 @@
           </div>
         </div>
       </div>
+    </div>
+    </div>
     </div>
   </body>

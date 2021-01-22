@@ -14,18 +14,30 @@ export class LoginComponent implements OnInit {
       email:'',
       password:''
     }
+    login:boolean = false;
+    errormsg:string ="";
+
   constructor(private loginService:LoginService,private router:Router) { }
 
   ngOnInit() {
   }
+
+  handleLoginALert(){
+    this.login=false;
+    this.errormsg="";
+  }
+
   loginUser(formData:NgForm){
       console.log(formData.value);
     this.loginService.logins(formData.value).subscribe((res)=>{
-        console.log(res.token);
-           this.loginService.setToken(res.token);
+      formData.reset();
+            this.login= true;
+            this.loginService.setToken(res.token);
             this.router.navigate(['dashboard']);
     },(err)=>{
-        alert(err.error.message);
+      this.login= true;
+      this.errormsg=err.error.message;
+        // alert(err.error.message);
     });      
   }
 }

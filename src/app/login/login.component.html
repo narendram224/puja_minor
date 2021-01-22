@@ -1,43 +1,74 @@
 <!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
 
 <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-          <div class="card card-signin my-5">
-            <div class="card-body">
-              <h5 class="card-title text-center">Sign In</h5>
-              <form class="form-signin" #userFrom = "ngForm" (ngSubmit)=" loginUser(userFrom)">
-                    <div class="form-label-group">
-                            <!-- <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required  autofocus> -->
-                         <!-- <label for="inputEmail">Email address</label> -->
-                         <input type="email" id="inputEmail" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                         #emailcontroler="ngModel" name="email" id="email" [(ngModel)]="newUser.email" class="form-control"
-                         [class.is-invalid]="emailcontroler.invalid && emailcontroler.touched"  [class.is-valid]="emailcontroler.touched && emailcontroler.valid"
-                           placeholder="Enter email address" aria-describedby="helpId"> 
-                 
-                         <small id="helpId" class=" invalid-feedback" *ngIf="emailcontroler.errors?.required && emailcontroler.touched">email is required</small>
-                        <small id="helpId" class=" invalid-feedback" *ngIf=" emailcontroler.errors?.pattern">enter proper email</small>
+  <div style="background: url(https://i.postimg.cc/ZnHTP71s/aircraft-airplane-boat-1575833.jpg)" class="page-holder bg-cover">
+
+    <div class="container pt-3 pb-1">
+      <header class="text-center text-white pt-5 pb-1 ">
+        <h1 class="display-4 font-weight-bold mb-4">Login For explore more</h1>
+        <p class="lead mb-0"> I don't believe in taking right decisions, I take decisions and make them right.</p>
+      
+      </header>
+  
+      <!-- <div class="text-white">
+        <p class="lead">It's not a good approch to deal directly with <code class="bg-white px-2 py-1 rounded">body</code> So, create a wrapper container and make it a full-window height.</p>
+        <p class="lead">Set the wrapper initial height to full window height using <code class="bg-white px-2 py-1 rounded">min-height: 100vh</code></p>
+        <p class="lead">Use <code class="bg-white px-2 py-1 rounded">.bg-cover</code> to make the background fit all viewports.</p>
+      </div> -->
+      <div class="container text-white">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="login&&errormsg!==''">
+          <strong>Got Error while login!</strong> {{errormsg}}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="handleLoginALert()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="alert alert-info alert-dismissible fade show" role="alert" *ngIf="login&&errormsg==''">
+          <strong>Welcome  to user team  &#9787;</strong> Successfully login.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="handleLoginALert()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="row">
+          <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5">
+              <div class="card-body">
+                <h5 class="card-title text-center text-muted">Sign In</h5>
+                <form class="form-signin" #userFrom = "ngForm" (ngSubmit)=" loginUser(userFrom)">
+                      <div class="form-label-group">
+                              <!-- <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required  autofocus> -->
+                           <!-- <label for="inputEmail">Email address</label> -->
+                           <input type="email" id="inputEmail" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                           #emailcontroler="ngModel" name="email" id="email" [(ngModel)]="newUser.email" class="form-control"
+                           [class.is-invalid]="emailcontroler.invalid && emailcontroler.touched"  [class.is-valid]="emailcontroler.touched && emailcontroler.valid"
+                             placeholder="Enter email address" aria-describedby="helpId"> 
                    
-                        </div> 
-  
-                        <div class="form-label-group">
-                                <input type="password" placeholder="Enter Password" class="form-control" name="password" [(ngModel)]="newUser.password" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" 
-                                [class.is-valid]="password.touched && password.valid" required minlength="6" />
-                                    <span class="invalid-feedback" *ngIf="password.errors?.required">Password is required</span>
-                                    <span class="invalid-feedback" *ngIf="password.errors?.minlength">Password must be at least 6 characters</span>
-                               
-                        </div>
-          
-  
-                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
-                <hr class="my-4">
-                <button class="btn btn-lg btn-google btn-block text-uppercase" routerLink="/register" type="button"><i class="fab fa-google mr-2"></i> Sign up</button>
-                <button class="btn btn-lg btn-facebook btn-block text-uppercase" routerLink="/" type="button"><i class="fab fa-facebook-f mr-2"></i> Home</button>
-              </form>
+                           <small id="helpId" class=" invalid-feedback" *ngIf="emailcontroler.errors?.required && emailcontroler.touched">email is required</small>
+                          <small id="helpId" class=" invalid-feedback" *ngIf=" emailcontroler.errors?.pattern">enter proper email</small>
+                     
+                          </div> 
+    
+                          <div class="form-label-group">
+                                  <input type="password" placeholder="Enter Password" class="form-control" name="password" [(ngModel)]="newUser.password" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" 
+                                  [class.is-valid]="password.touched && password.valid" required minlength="6" />
+                                      <span class="invalid-feedback" *ngIf="password.errors?.required">Password is required</span>
+                                      <span class="invalid-feedback" *ngIf="password.errors?.minlength">Password must be at least 6 characters</span>
+                                 
+                          </div>
+            
+    
+                  <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                  <hr class="my-4">
+                  <button class="btn btn-lg btn-google btn-block text-uppercase" routerLink="/register" type="button"><i class="fab fa-google mr-2"></i> Sign up</button>
+                  <button class="btn btn-lg btn-facebook btn-block text-uppercase" routerLink="/" type="button"><i class="fab fa-facebook-f mr-2"></i> Home</button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
+  
     </div>
+
+  </div>
+    
   </body>
